@@ -1,0 +1,52 @@
+[user]
+	name = bhodrolok
+[core]
+  editor = 'C:/Program Files/Sublime Text/subl.exe' -w
+[interactive]
+	diffFilter = "riff --color=on"
+[alias]
+  edit = "config --global --edit"
+  branches = "branch -vva"
+  remotes = "remote -v"
+  tags = "tag -l"
+  fo = "fetch origin"
+  wdiff = "diff --color-words"
+  lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+  smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)[%H]%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)[%ae]%Creset%n%C(cyan)%s%n%Creset'
+  lol = "commit --amend --no-edit --date=now --reset-author"
+  pd = "push origin develop"
+[branch]
+	# Sort `git branch` output to show most recently committed to branches first
+	sort = -committerdate
+[init]
+	defaultBranch = main
+[commit]
+	# configure Git to sign all commits by default
+	gpgsign = true
+	verbose = true
+	# use custom commit message template
+[gpg]
+	program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
+[pager]
+	diff = riff
+	show = riff
+	log = riff
+[diff]
+	tool = vsdiffmerge
+[difftool]
+	prompt = true
+[difftool "vsdiffmerge"]
+	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
+	keepBackup = false
+[merge]
+	tool = vsdiffmerge
+[mergetool]
+	prompt = true
+[mergetool "vsdiffmerge"]
+	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\" //m
+	keepBackup = false
+	trustExitCode = true
+[credential]
+	helper = manager
+[credential "https://dev.azure.com"]
+	usehttppath = true

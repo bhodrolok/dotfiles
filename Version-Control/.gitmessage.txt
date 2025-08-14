@@ -1,0 +1,39 @@
+
+# Title format: <type>(<scope>): <subject>
+# Subject: Summary of changes, imperative, start upper case(not important xD), don't end with a period
+# Imperative -> 'add' 'modify' 'fix' NOT 'added' 'modified' 'fixed'
+# No more than 50 chars. #### 50 chars is here:  #
+
+# Remember blank line between title and body.
+
+# type(s):
+#	- feat: FEATURES  (new feature for the user, not a new feature for build script)
+#	- fix:  FIXES (bug fix for the user, not a fix to a build script)
+#	- docs:  DOCUMENTATION (changes to the documentation)
+#	- style: STYLES (formatting, missing semi colons, etc; no production code change)
+#	- refactor: CODE REFACTORING (refactoring production code, eg. renaming a variable)
+#	- perf: PERFORMANCE IMPROVEMENTS
+#	- ci: CONTINOUS INTEGRATIONS
+#	- revert: REVERTS (a previous commit)
+#	- test: TESTS (adding missing tests, refactoring tests; no production code change)
+#	- chore: CHORES (updating grunt tasks etc; NO production code changes to src/ or test/)
+#	- build: BUILD (changes to build tools, etc;)
+#	- deps: DEPENDENCIES (changes to package dependencis, etc.)
+#   - tweak: TWEAK (idk when the others done fit)
+#   - misc: MISCELLANEOUS (^)
+#   - config: CONFIGURATION (^)
+
+# scope(s):
+#	- init
+#	- runner
+#	- watcher
+#	- config
+#	- web-server
+#	- proxy
+#	- etc.
+# Can also just be empty 
+# (e.g. if the change is a global or difficult to assign to a single component), in which case the parentheses are omitted. 
+
+# Rest of body (optional)
+
+# Footer (optional)

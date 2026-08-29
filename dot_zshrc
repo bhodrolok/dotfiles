@@ -1,0 +1,139 @@
+export LANG=en_US.UTF-8
+
+fpath=(/home/rc/.zsh/completions $fpath)
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/rc/.zshrc'
+
+
+setopt append_history           # append the history
+setopt share_history            # Share history between sessions
+                                # with this option, you should not enable
+                                # inc_append_history
+
+#setopt extended_history         # include statistics of when/how long/etc
+                                # command has run
+
+#setopt hist_ignore_dups         # do not store dupes executed after eachother
+
+# When HISTSIZE is smaller than SAVEHIST hist_expire_dups_first acts
+# as hist_ignore_all_dups, so let's just set the correct options when that
+# happens
+
+#setopt hist_expire_dups_first   # removes copies when the histfile fills up
+setopt hist_ignore_all_dups     # removes copies of the same line
+
+setopt hist_save_no_dups        # don't save dupes from the same session
+setopt hist_find_no_dups        # if we find dupes in the history, don't show
+                                # them in editor commands)
+setopt hist_reduce_blanks       # remove blank lines from the command which
+                                # mean nothing to the shell
+
+# Disable this on boxes that are affected by bug
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=924736
+# is-at-least 5.5   &&  unsetopt hist_reduce_blanks
+# bugfix is incoming, lets see what it does
+# is-at-least 5.7.2 &&  setopt hist_reduce_blanks
+
+setopt hist_ignore_space   # lines starting with space don't go into the
+                           # history
+setopt no_hist_beep        # silence..!
+setopt hist_verify
+setopt hist_no_store       # don't store history/fc commands
+#setopt hist_no_functions   # don't show history of function definitions
+
+setopt bg_nice             # nice bg commands
+setopt notify              # notify when a command returns exit code
+
+#setopt no_beep             # silence..!
+
+unsetopt auto_cd           # disable $ ./bin as cd ./bin
+setopt extendedglob        # ls ^bla.* will not show ^bla.txt for example
+
+setopt correct             # correct incorrent cmd's
+setopt correctall          # correct everything, use
+                           # `nocorrect mv foo bar` to negate this feature
+                           # for a command
+
+setopt hash_list_all       # fill the lookup table for tab completions
+
+unsetopt promptcr          # prevent the prompt overwriting output when
+                           # there is no newline
+                           #
+unsetopt shwordsplit
+
+unsetopt nomatch           #
+setopt prompt_subst        # Enable prompt substition
+
+setopt glob_subst          # global substitution
+
+setopt longlistjobs
+setopt completeinword
+
+# Directories
+setopt auto_pushd          # cd foo == pushd foo
+setopt pushd_ignore_dups   # no duplicates in the list
+setopt pushdminus
+setopt auto_name_dirs      # foo=/path/to/foo is the same as
+                           # hash -d foo=/path/to/foo
+
+# Misc
+setopt interactivecomments # $ # foo doesn't become an error when hitting
+                           # ent
+
+
+# Enable command execution inside the prompt string
+setopt PROMPT_SUBST
+
+
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+eval "$(zoxide init zsh)"
+
+export PATH="$PATH:/home/rc/MiscSoftware/stinkpot"
+eval "$(stinkpot init zsh)"
+
+export PATH="$PATH:/home/rc/.cargo/bin"
+
+eval "$(sheldon source)"
+
+# Configure your prompt (shows size in brackets followed by current folder path)
+# PROMPT='[$(get_dir_size)] %~ %# '
+
+
+autoload -Uz add-zsh-hook
+# Cache expensive calls in precmd (runs once per command, not on async redraws).
+# nvm can't use this context cuz: 'prompt_pure_set_title:28: bad pattern: ^[]0;MiscSoftware: tempa=$(du -sh . 2>/dev/null | awk '{print $1}') ^G'
+
+my_dir_size_context=
+# Function to calculate current directory size
+get_dir_size() {
+  # du -sh: s=summary, h=human-readable. 2>/dev/null hides permission errors.
+  # awk extracts just the size string from the output
+  my_dir_size_context=$(du -sh . 2>/dev/null | awk '{print $1}')
+}
+add-zsh-hook precmd get_dir_size
+
+prompt_pure_precustom() {
+	psvar[22]='lmao'
+	psvar[23]=$(date +"%F at %T")
+}
+
+# bun completions
+[ -s "/home/rc/.bun/_bun" ] && source "/home/rc/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Disable autocorrect for a few commands and 'override' them with aliases
+alias git='nocorrect git'
+alias config='/usr/bin/git --git-dir=/home/rc/.cfg/ --work-tree=/home/rc'

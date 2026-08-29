@@ -5,12 +5,10 @@ Helps speed up setting up new machines with my favorite settings, themes, etc. P
 
 The tool that I use to manage my dotfiles is [chezmoi](https://github.com/twpayne/chezmoi). Slight overhead as this tool needs to be installed first for syncing the dotfiles but the pros definitely make up for it.
 
-Git is also needed btw
-
 ## Usage
 
 > [!NOTE]
->  Can also run this to both install chezmoi (using their official install script) and setup the repo: `sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply $GITHUB_USERNAME`
+>  Can also run this command on a terminal to both install chezmoi (using their official install script) and setup the repo at once: `sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply $GITHUB_USERNAME`
 
 
 1. Install [chezmoi](https://www.chezmoi.io/install/) for your distro/platform

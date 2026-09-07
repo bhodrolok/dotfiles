@@ -10,7 +10,6 @@ SAVEHIST=1000
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/rc/.zshrc'
 
-
 setopt append_history           # append the history
 setopt share_history            # Share history between sessions
                                 # with this option, you should not enable
@@ -86,11 +85,8 @@ setopt auto_name_dirs      # foo=/path/to/foo is the same as
 setopt interactivecomments # $ # foo doesn't become an error when hitting
                            # ent
 
-
 # Enable command execution inside the prompt string
 setopt PROMPT_SUBST
-
-
 
 autoload -Uz compinit
 compinit
@@ -136,4 +132,10 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Disable autocorrect for a few commands and 'override' them with aliases
 alias git='nocorrect git'
-alias config='/usr/bin/git --git-dir=/home/rc/.cfg/ --work-tree=/home/rc'
+# alias config='/usr/bin/git --git-dir=/home/rc/.cfg/ --work-tree=/home/rc'
+
+. "$HOME/.local/bin/env"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Update autocomplete suggestion text colors
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#FFE9D0,bg=#2D1B14,bold,underline"
